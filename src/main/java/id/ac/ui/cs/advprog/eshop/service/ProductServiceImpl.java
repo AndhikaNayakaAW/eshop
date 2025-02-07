@@ -1,3 +1,4 @@
+//main/java/id.ac.ui.cs.advprog.eshop/service/ProductServiceImpl.java
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -19,6 +20,7 @@ public class ProductServiceImpl implements ProductService {
     public Product create(Product product) {
         productRepository.create(product);
         return product;
+
     }
 
     @Override
@@ -27,5 +29,15 @@ public class ProductServiceImpl implements ProductService {
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
+    }
+
+    @Override
+    public Product update(Product product) {
+        return productRepository.update(product);
+    }
+
+    @Override
+    public boolean delete(String productId) {
+        return productRepository.delete(productId);
     }
 }

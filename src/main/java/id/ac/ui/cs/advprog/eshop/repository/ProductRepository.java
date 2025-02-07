@@ -1,3 +1,4 @@
+//main/java/id.ac.ui.cs.advprog.eshop/repository/ProductRepository.java
 package id.ac.ui.cs.advprog.eshop.repository;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -16,7 +17,30 @@ public class ProductRepository {
         return product;
     }
 
-    public Iterator<Product> findAll() {
+    public Iterator<Product> findAll () {
         return productData.iterator();
+
+    }
+    public Product update(Product updatedProduct) {
+        for (Product product : productData) {
+            if (product.getProductId().equals(updatedProduct.getProductId())) {
+                product.setProductName(updatedProduct.getProductName());
+                product.setProductQuantity(updatedProduct.getProductQuantity());
+                return product;
+            }
+        }
+        return null; // If product not found
+    }
+
+    public boolean delete(String productId) {
+        Iterator<Product> iterator = productData.iterator();
+        while (iterator.hasNext()) {
+            Product product = iterator.next();
+            if (product.getProductId() != null && product.getProductId().equals(productId)) {
+                iterator.remove();
+                return true;  // Successfully deleted
+            }
+        }
+        return false;  // Product not found
     }
 }
