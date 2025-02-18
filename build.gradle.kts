@@ -84,7 +84,7 @@ tasks.withType<Test>().configureEach {
 sonar {
     properties {
         property("sonar.projectKey", "AndhikaNayakaAW_eshop")
-        property("sonar.organization", "AndhikaNayakaAW")
+        property("sonar.organization", "andhikanayakaaw")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.login", System.getenv("SONAR_TOKEN") ?: error("SONAR_TOKEN environment variable is not set"))
     }
