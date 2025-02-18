@@ -29,6 +29,7 @@ val seleniumJavaVersion = "4.14.1"
 val seleniumJupiterVersion = "5.0.1"
 val webdrivermanagerVersion = "5.6.3"
 
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -43,6 +44,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
 }
+
 
 tasks.register<Test>( "unitTest") {
     description = "Runs unit tests."
@@ -69,17 +71,16 @@ tasks.test {
         excludeTestsMatching("*FunctionalTest")
     }
     finalizedBy(tasks.jacocoTestReport)
-
 }
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
-
 }
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
+
 sonar {
     properties {
         property("sonar.projectKey", "AndhikaNayakaAW_eshop")
