@@ -41,3 +41,18 @@ After implementing unit tests in this project, I have gained a deeper understand
   - **URL management**
 
   By implementing **inheritance in functional test classes**, I can significantly **reduce redundancy and improve maintainability**.
+
+# Module 2 - CI/CD & DevOps
+
+**Andhika Nayaka Arya Wibowo (2306174135)**
+
+---
+## Reflection 1
+
+During the exercise, I resolved several code quality issues to improve the overall CI/CD workflow. One of the key issues was a duplicate code segment, which I fixed by refactoring the repeated logic into a reusable function to enhance maintainability and reduce redundancy. Additionally, I encountered a permission error in the Dockerfile and ci.yml, which I resolved by adding chmod +x gradlew before executing the build command. This ensured that the Gradle wrapper had the necessary execution permissions. To further improve code quality, I integrated SonarCloud into the project, allowing early detection of potential issues and maintaining a high-quality codebase.
+
+---
+
+## Reflection 2
+
+My current CI/CD implementation aligns with Continuous Integration (CI) principles by automatically executing test suites and analyzing code quality on every push or pull request. It also incorporates Continuous Deployment (CD) by automatically deploying the latest changes to Koyeb whenever updates are made to the main branch. This automation minimizes manual intervention, reduces errors, and ensures a fast, reliable, and scalable deployment process. By implementing both CI and CD, the workflow maintains code consistency, enhances software reliability, and accelerates delivery cycles.
