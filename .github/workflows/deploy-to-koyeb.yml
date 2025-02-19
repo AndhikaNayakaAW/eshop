@@ -25,5 +25,5 @@ jobs:
         env:
           KOYEB_API_TOKEN: ${{ secrets.KOYEB_API_TOKEN }}
         run: |
-          curl -X POST "https://app.koyeb.com/v1/services/e17ff2c9-88e3-4225-a47a-2bc610c8b477/redeploy" \
+          curl -X POST "https://app.koyeb.com/v1/services/4e7d182f-9d8e-4a80-96cb-4a603188ee14/redeploy" \
                -H "Authorization: Bearer $KOYEB_API_TOKEN"
