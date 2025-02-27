@@ -1,9 +1,8 @@
-// main/java/id.ac.ui.cs.advprog.eshop/controller/CarController.java
+// main/java/id/ac/ui/cs/advprog/eshop/controller/CarController.java
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,12 @@ import java.util.List;
 @RequestMapping("/car")
 public class CarController {
 
-    @Autowired
-    private CarService carService;
+    private final CarService carService;
+
+    // Constructor injection ensures CarController depends on the CarService abstraction.
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping("/createCar")
     public String createCarPage(Model model) {

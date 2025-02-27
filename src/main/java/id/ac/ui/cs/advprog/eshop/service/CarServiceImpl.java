@@ -3,17 +3,20 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.repository.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
 
-    @Autowired
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
 
-    // Command operations
+    // Constructor injection ensures that CarServiceImpl depends only on the CarRepository abstraction.
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
+
     @Override
     public Car create(Car car) {
         carRepository.create(car);
@@ -30,7 +33,6 @@ public class CarServiceImpl implements CarService {
         carRepository.delete(carId);
     }
 
-    // Query operations
     @Override
     public Car findById(String carId) {
         return carRepository.findById(carId);
