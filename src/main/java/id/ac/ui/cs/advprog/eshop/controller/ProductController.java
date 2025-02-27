@@ -29,7 +29,7 @@ public class ProductController {
     public String createProductPost(@ModelAttribute Product product) {
         product.setProductId(UUID.randomUUID().toString());
         service.create(product);
-        return "redirect:/product/list";
+        return "redirect:/product/list";  // Use absolute redirect here
     }
 
     @GetMapping("/list")
@@ -48,18 +48,18 @@ public class ProductController {
                 return "EditProduct";
             }
         }
-        return "redirect:/product/list";
+        return "redirect:/product/list";  // Use absolute redirect
     }
 
     @PostMapping("/edit")
     public String editProductPost(@ModelAttribute Product product) {
         service.update(product);
-        return "redirect:/product/list";
+        return "redirect:/product/list";  // Use absolute redirect
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") String id) {
         service.delete(id);
-        return "redirect:/product/list";
+        return "redirect:/product/list";  // Use absolute redirect
     }
 }
