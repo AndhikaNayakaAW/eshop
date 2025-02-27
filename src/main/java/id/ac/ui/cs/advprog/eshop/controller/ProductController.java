@@ -63,3 +63,4 @@ public class ProductController {
         return "redirect:/product/list";
     }
 }
+
