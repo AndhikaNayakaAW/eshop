@@ -1,4 +1,4 @@
-// main/java/id/ac/ui/cs/advprog/eshop/controller/ProductController.java
+// src/main/java/id/ac/ui/cs/advprog/eshop/controller/ProductController.java
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -29,7 +29,7 @@ public class ProductController {
     public String createProductPost(@ModelAttribute Product product) {
         product.setProductId(UUID.randomUUID().toString());
         service.create(product);
-        return "redirect:/product/list";  // Use absolute redirect here
+        return "redirect:/product/list";
     }
 
     @GetMapping("/list")
@@ -48,18 +48,18 @@ public class ProductController {
                 return "EditProduct";
             }
         }
-        return "redirect:/product/list";  // Use absolute redirect
+        return "redirect:/product/list";
     }
 
     @PostMapping("/edit")
     public String editProductPost(@ModelAttribute Product product) {
         service.update(product);
-        return "redirect:/product/list";  // Use absolute redirect
+        return "redirect:/product/list";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") String id) {
         service.delete(id);
-        return "redirect:/product/list";  // Use absolute redirect
+        return "redirect:/product/list";
     }
 }

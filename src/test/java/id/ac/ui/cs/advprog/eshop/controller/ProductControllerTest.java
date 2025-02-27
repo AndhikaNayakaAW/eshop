@@ -43,7 +43,7 @@ public class ProductControllerTest {
                         .param("productName", "Test Product")
                         .param("productQuantity", "10"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("list"));
+                .andExpect(redirectedUrl("/product/list"));  // Updated expectation
 
         verify(service, times(1)).create(any(Product.class));
     }
@@ -78,7 +78,6 @@ public class ProductControllerTest {
 
     @Test
     public void testEditProductPage_ProductNotFound() throws Exception {
-        // No products returned by service
         when(service.findAll()).thenReturn(Collections.emptyList());
 
         mockMvc.perform(get("/product/edit/123"))
@@ -86,11 +85,6 @@ public class ProductControllerTest {
                 .andExpect(redirectedUrl("/product/list"));
     }
 
-    /**
-     * Additional test: ensure we handle multiple products
-     * and the matching one is the second item in the list.
-     * This helps cover the loop in editProductPage fully.
-     */
     @Test
     public void testEditProductPage_ProductFoundSecondInList() throws Exception {
         Product product1 = new Product();
@@ -103,19 +97,12 @@ public class ProductControllerTest {
 
         when(service.findAll()).thenReturn(Arrays.asList(product1, product2));
 
-        // Request editing product "222" — ensures the loop doesn't return on first product
         mockMvc.perform(get("/product/edit/222"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("product", product2))
                 .andExpect(view().name("EditProduct"));
     }
 
-    /**
-     * Additional test: if a product in the list has a null ID,
-     * we skip it without throwing an exception.
-     * (Only needed if your code checks for null IDs or if you
-     *  want to ensure coverage for that scenario.)
-     */
     @Test
     public void testEditProductPage_ProductWithNullId() throws Exception {
         Product nullIdProduct = new Product();
@@ -124,9 +111,6 @@ public class ProductControllerTest {
 
         when(service.findAll()).thenReturn(Arrays.asList(nullIdProduct));
 
-        // If the controller code doesn't explicitly handle null,
-        // you'll need a safe check like (p.getProductId() != null && p.getProductId().equals(id))
-        // to avoid NullPointerExceptions.
         mockMvc.perform(get("/product/edit/999"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/product/list"));
@@ -153,17 +137,8 @@ public class ProductControllerTest {
         verify(service, times(1)).delete("123");
     }
 
-    /**
-     * Additional test: if we try to delete a product that doesn't exist,
-     * we still redirect to /product/list. (This covers the scenario where
-     * service.delete() might return false, or do nothing.)
-     */
     @Test
     public void testDeleteProduct_NotFound() throws Exception {
-        // Optionally mock service.delete(...) if it returns a boolean
-        // and you want to check how it handles "not found".
-        // e.g., when(service.delete("999")).thenReturn(false);
-
         mockMvc.perform(get("/product/delete/999"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/product/list"));
@@ -171,6 +146,3 @@ public class ProductControllerTest {
         verify(service, times(1)).delete("999");
     }
 }
-
-
-
