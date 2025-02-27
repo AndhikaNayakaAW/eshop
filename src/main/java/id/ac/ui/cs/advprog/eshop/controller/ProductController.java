@@ -1,16 +1,13 @@
-//main/java/id.ac.ui.cs.advprog.eshop/controller/ProductController.java
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation .*;
-import id.ac.ui.cs.advprog.eshop.model.Car;
 import org.springframework.web.bind.annotation.*;
-import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
-
 
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +27,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String createProductPost(@ModelAttribute Product product, Model model) {
+    public String createProductPost(@ModelAttribute Product product) {
         product.setProductId(UUID.randomUUID().toString());
         service.create(product);
         return "redirect:list";
@@ -41,14 +38,13 @@ public class ProductController {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
         return "ProductList";
-
     }
 
     @GetMapping("/edit/{id}")
     public String editProductPage(@PathVariable("id") String id, Model model) {
         List<Product> allProducts = service.findAll();
         for (Product product : allProducts) {
-            if (id.equals(product.getProductId())) {  // Null-safe comparison
+            if (id.equals(product.getProductId())) {
                 model.addAttribute("product", product);
                 return "EditProduct";
             }
@@ -71,7 +67,7 @@ public class ProductController {
 
 @Controller
 @RequestMapping("/car")
-class CarController extends ProductController {
+class CarController {
 
     @Autowired
     private CarServiceImpl carservice;
@@ -84,7 +80,7 @@ class CarController extends ProductController {
     }
 
     @PostMapping("/createCar")
-    public String createCarPost(@ModelAttribute Car car, Model model) {
+    public String createCarPost(@ModelAttribute Car car) {
         carservice.create(car);
         return "redirect:listCar";
     }
@@ -104,8 +100,7 @@ class CarController extends ProductController {
     }
 
     @PostMapping("/editCar")
-    public String editCarPost(@ModelAttribute Car car, Model model) {
-        System.out.println(car.getCarId());
+    public String editCarPost(@ModelAttribute Car car) {
         carservice.update(car.getCarId(), car);
         return "redirect:listCar";
     }
