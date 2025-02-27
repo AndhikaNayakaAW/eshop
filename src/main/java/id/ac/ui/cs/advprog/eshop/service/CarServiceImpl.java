@@ -12,7 +12,7 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
 
     @Autowired
-    private CarRepository carRepository; // Spring will inject the InMemoryCarRepository bean
+    private CarRepository carRepository; // Spring can inject either InMemoryCarRepository or LoggingCarRepository
 
     @Override
     public Car create(Car car) {

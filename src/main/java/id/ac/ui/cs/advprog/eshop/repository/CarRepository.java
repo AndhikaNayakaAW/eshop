@@ -2,6 +2,7 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -61,5 +62,22 @@ public interface CarRepository {
         public void delete(String id) {
             carData.removeIf(car -> car.getCarId().equals(id));
         }
+    }
+
+    @Repository
+    @Primary
+    class LoggingCarRepository extends InMemoryCarRepository {
+        @Override
+        public Car create(Car car) {
+            System.out.println("LoggingCarRepository: Creating car with name " + car.getCarName());
+            return super.create(car);
+        }
+
+        @Override
+        public List<Car> findAll() {
+            System.out.println("LoggingCarRepository: Retrieving all cars");
+            return super.findAll();
+        }
+
     }
 }
