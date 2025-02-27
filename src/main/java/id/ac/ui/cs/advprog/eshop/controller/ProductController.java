@@ -1,4 +1,4 @@
-// main/java/id.ac.ui.cs.advprog.eshop/controller/ProductController.java
+// main/java/id.ac/ui/cs/advprog/eshop/controller/ProductController.java
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -63,4 +63,3 @@ public class ProductController {
         return "redirect:/product/list";
     }
 }
-
