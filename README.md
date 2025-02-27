@@ -56,3 +56,63 @@ During the exercise, I resolved several code quality issues to improve the overa
 ## Reflection 2
 
 My current CI/CD implementation aligns with Continuous Integration (CI) principles by automatically executing test suites and analyzing code quality on every push or pull request. It also incorporates Continuous Deployment (CD) by automatically deploying the latest changes to Koyeb whenever updates are made to the main branch. This automation minimizes manual intervention, reduces errors, and ensures a fast, reliable, and scalable deployment process. By implementing both CI and CD, the workflow maintains code consistency, enhances software reliability, and accelerates delivery cycles.
+
+# Module 3 - OO Principles & Software Maintainability
+
+**Andhika Nayaka Arya Wibowo (2306174135)**
+
+---
+
+## Reflection
+
+### 1) Explain what principles you apply to your project!
+
+In this project, I applied several SOLID principles:
+- **Single Responsibility Principle (SRP):**  
+  Each class is responsible for a single aspect of functionality. For example, `ProductController` handles product-related operations while `CarController` manages car-related features.
+
+- **Open-Closed Principle (OCP):**  
+  The design is open for extension but closed for modification. By relying on interfaces (e.g., for service and repository layers), new behaviors can be added (such as a new repository implementation) without changing the existing code.
+
+- **Liskov Substitution Principle (LSP):**  
+  Subclasses or alternative implementations (like a logging repository extending an in-memory repository) can replace their base class without breaking the system’s behavior.
+
+- **Interface Segregation Principle (ISP):**  
+  Large interfaces are split into smaller ones (for example, using nested interfaces in `CarService` for query and command operations) so that clients only depend on the methods they need.
+
+- **Dependency Inversion Principle (DIP):**  
+  High-level modules (like controllers) depend on abstractions (interfaces) rather than concrete classes. Constructor injection is used to ensure that controllers and services are loosely coupled to their implementations.
+
+### 2) Explain the advantages of applying SOLID principles to your project with examples.
+
+- **Maintainability:**  
+  By adhering to SRP, each class remains focused and easier to understand. For instance, modifications in product-related logic do not affect car-related functionality.
+
+- **Extensibility:**  
+  With OCP, new features (such as additional repository implementations) can be added without modifying existing code. This minimizes the risk of introducing bugs during enhancements.
+
+- **Robustness:**  
+  LSP ensures that any new subclass (like a logging-enhanced repository) can replace its parent without altering the program’s correctness, simplifying testing and maintenance.
+
+- **Clarity:**  
+  Using ISP, interfaces remain clean and focused, so clients are not burdened with unnecessary methods. This prevents unintended side effects and makes the codebase easier to navigate.
+
+- **Flexibility:**  
+  DIP reduces tight coupling between components. For example, the controllers depend on the abstract `ProductService` instead of a concrete implementation, making it simple to swap out components for alternative implementations without affecting the overall system.
+
+### 3) Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+- **Increased Complexity:**  
+  Without SRP, a single class might handle multiple responsibilities, leading to large, hard-to-maintain classes where changes in one area inadvertently affect others.
+
+- **Reduced Extensibility:**  
+  Not following OCP means that adding new features might require modifying existing, stable code—this increases the risk of regressions.
+
+- **Fragility:**  
+  A violation of LSP can result in subclasses that behave unexpectedly when used in place of their parent, potentially breaking the application’s overall behavior.
+
+- **Bloated Interfaces:**  
+  Without ISP, clients might be forced to depend on methods they do not need, which can lead to confusion and unnecessary coupling.
+
+- **Tight Coupling:**  
+  Failing to follow DIP makes high-level modules depend directly on low-level modules. This tight coupling makes it difficult to change or replace lower-level components without affecting the entire system.
