@@ -116,3 +116,52 @@ In this project, I applied several SOLID principles:
 
 - **Tight Coupling:**  
   Failing to follow DIP makes high-level modules depend directly on low-level modules. This tight coupling makes it difficult to change or replace lower-level components without affecting the entire system.
+
+# Module 4 - Test-Driven Development & Refactoring
+
+**Andhika Nayaka Arya Wibowo (2306174135)**
+
+---
+
+## Reflection 1
+
+Following the Test-Driven Development (TDD) workflow in this exercise has been highly beneficial. Writing tests before implementing functionality clarified the requirements and ensured that every piece of code met its intended behavior. Reflecting on Percival (2017)'s self-reflective questions, I find that this TDD flow has helped me catch bugs early and foster a disciplined development approach. However, there are still areas to improve:
+
+- **Anticipating Edge Cases:**  
+  Although my tests cover primary scenarios well, I plan to invest more time upfront to map out and test less common or extreme cases. This will further ensure that all potential failure modes are caught early.
+
+- **Test Granularity:**  
+  My current tests focus on single behaviors, but I aim to refine them even further. Breaking tests into even more granular units will help isolate issues and simplify maintenance.
+
+- **Continuous Feedback:**  
+  The iterative nature of TDD already provides rapid feedback. In the future, I intend to integrate additional coverage metrics and continuously evaluate how new tests affect the design, ensuring that they drive improvements in the codebase.
+
+---
+
+## Reflection 2
+
+Reflecting on the unit tests created during the tutorial against the F.I.R.S.T. principles, I observe the following:
+
+- **Fast:**  
+  The tests run quickly since they focus solely on internal logic without involving external systems like databases or APIs. Using Mockito for dependency simulation has contributed greatly to this speed.
+
+- **Independent:**  
+  With the use of `@BeforeEach`, each test starts with a clean state, ensuring that the outcome of one test does not affect another. This isolation is crucial for pinpointing issues.
+
+- **Repeatable:**  
+  The tests yield consistent results across multiple runs because they do not rely on external states or resources, which builds confidence in their reliability.
+
+- **Self-Validating:**  
+  By employing assertions such as `assertEquals()`, `assertTrue()`, and `assertThrows()`, the tests clearly indicate success or failure without manual intervention, thus simplifying debugging and verification.
+
+- **Timely:**  
+  Writing tests before implementation ensures that each functionality is built to meet specific expectations. This approach keeps the focus on delivering only what is necessary and prevents scope creep.
+
+While the tests adhere well to the F.I.R.S.T. principles, I recognize the need to expand the coverage further by including more edge cases and refining the organization of test setups. In future projects, I will:
+
+- **Expand Test Cases:**  
+  Add tests that challenge the boundaries of valid input and capture a wider range of behaviors.
+- **Refine Test Organization:**  
+  Modularize common test setups to further reduce redundancy and enhance maintainability.
+
+Overall, TDD combined with adherence to the F.I.R.S.T. principles forms a robust foundation for developing high-quality, maintainable software.
